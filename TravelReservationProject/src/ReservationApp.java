@@ -1,52 +1,46 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class ReservationApp {
-    private ArrayList < Flight > flights;
-    private ArrayList < Hotel > hotels;
+    private ArrayList<Flight> flights;
+    private ArrayList<Hotel> hotels;
 
-    private ArrayList < Bus > buses;
-    private ArrayList < Train > trains;
+    private ArrayList<Bus> buses;
+    private ArrayList<Train> trains;
     private String userName;
     private String userPassword;
     private int phoneNumber;
     private int NIN;
     private String address;
+    int isBooked;
 
 
+    public static int sumOfReservation(List<Integer> list) {
+        int sum = 0;
+        for (Integer i : list) {
+            // Unboxing of i automatically
+            if (i % 2 != 0)
+                sum += i;
 
- public static int sumOfReservation(List<Integer> list) {
-     int sum = 0;
-     for(Integer i : list) {
-         // Unboxing of i automatically
-         if (i % 2 != 0)
-             sum += i;
-
-         // Unboxing of i is done automatically
-         // using intvalue implicitly
-         if (i.intValue() % 2 != 0)
-             sum += i.intValue();
-     }
-     // Returning the odd sum
-     return sum;
- }
-
-
-
+            // Unboxing of i is done automatically
+            // using intvalue implicitly
+            if (i.intValue() % 2 != 0)
+                sum += i.intValue();
+        }
+        // Returning the odd sum
+        return sum;
+    }
 
 
     //Initialize Array List
     public ReservationApp() {
-        this.flights  = new ArrayList<Flight>();
+        this.flights = new ArrayList<Flight>();
         this.hotels = new ArrayList<Hotel>();
-        this.buses  = new ArrayList<Bus>();
+        this.buses = new ArrayList<Bus>();
         this.trains = new ArrayList<Train>();
     }
 
 
-               // constructor for main class
+    // constructor for main class
     public ReservationApp(String userName, String userPassword, int phoneNumber, int NIN, String address) {
         this.userName = userName;
         this.userPassword = userPassword;
@@ -55,7 +49,9 @@ public class ReservationApp {
         this.address = address;
     }
 
-           // Getters and Setters
+
+
+    // Getters and Setters
     public String getUserName() {
         return userName;
     }
@@ -116,24 +112,65 @@ public class ReservationApp {
         String userPassword;
         int NIN;
 
+
         Scanner login = new Scanner(System.in);
-        System.out.println("Enter your UserName: ");
-        userName = login.nextLine();
-        System.out.println("Enter your UserPassword: ");
-        userPassword = login.nextLine();
-        System.out.println("Enter your NIN: ");
-        NIN = login.nextInt();
+        int registeredUsers = 0;
+        String input;
+        while (true) {
+            System.out.println("Enter 'register' to register a new user and 'Login' to login as a User or 'exit' to quit:");
+            input = login.nextLine();
+            if (input.equalsIgnoreCase("register")) {
+
+
+                System.out.print("Enter your UserName: ");
+                userName = login.nextLine();
+                System.out.print("Enter your UserPassword: ");
+                userPassword = login.nextLine();
+                System.out.print("Enter your NIN: ");
+                NIN = login.nextInt();
+                login.close();
+
+                System.out.println("\n ************ The users currently logged in at the moment ************* \n");
+                System.out.println("userName: " + userName + " \n userPassword " + userPassword + " \n NIN " + NIN);
+                System.out.println("User registered successfully!");
+
+                return true;
+
+            } else if (input.equalsIgnoreCase("login")) {
+
+
+                System.out.println("Succesfully login");
+
+                return true;
+
+            } else if (input.equalsIgnoreCase("exit")) {
+
+                break;
+
+
+            } else {
+                registeredUsers++;
+                System.out.println("Total registered users: " + registeredUsers);
+
+            }
+
+
+        System.out.println("Total registered users: " + registeredUsers);
         login.close();
-
-        System.out.println("userName: " + userName + " \n userPassword " + userPassword + " \n NIN " + NIN);
-
-        return true;
     }
+        return false;
+    }
+
+
+
+
 
                  // methods to search for flights
     public void searchFlights( String origin, String destination, String date, int numPassengers) {
         System.out.println("Searching for flights from " + origin + " to " + destination + " on "
                 + date + " for " + numPassengers + " passengers.");
+
+
     }
 
 
@@ -154,8 +191,47 @@ public class ReservationApp {
        System.out.println("searching for train " +trainId+ " seat " +seatNum+ " reservation made " +RSVP+ " train terminal " +origin+ " to " +destination+ " price " +price+ " is affordable");
    }
 
-       // function to book flight
-   public void bookFlight(int flightNumber, String flightPassengerName, String origin, String destination, String date, int numPassengers, double price, Boolean RSVP, String userName, String userPassword, int phoneNumber, int NIN, String address) {
+             // search for places available
+
+                 public boolean[] places;
+
+                public void Reservation(int numPlaces) {
+                    places = new boolean[numPlaces];
+                 }
+
+                public void reservePlace(int placeNumber) {
+                    if (placeNumber >= 0 && placeNumber < places.length) {
+                      places[placeNumber] = true;
+                         System.out.println("Place " + placeNumber + " reserved successfully.");
+                     } else {
+                         System.out.println("Invalid place number.");
+                     }
+                 }
+
+                 public void releasePlace(int placeNumber) {
+                     if (placeNumber >= 0 && placeNumber < places.length) {
+                         places[placeNumber] = false;
+                         System.out.println("Place " + placeNumber + " released successfully.");
+                     } else {
+                         System.out.println("Invalid place number.");
+                     }
+                 }
+
+                 public boolean isPlaceAvailable(int placeNumber) {
+                     if (placeNumber >= 0 && placeNumber < places.length) {
+                         return !places[placeNumber];
+                     } else {
+                         System.out.println("Invalid place number.");
+                         return false;
+                     }
+                 }
+
+
+
+
+
+    // function to book flight
+     public void bookFlight(int flightNumber, String flightPassengerName, String origin, String destination, String date, int numPassengers, double price, Boolean RSVP, String userName, String userPassword, int phoneNumber, int NIN, String address) {
       Flight flight = new Flight(flightNumber, flightPassengerName, origin, destination,date, numPassengers, price, RSVP, userName, userPassword, address, NIN, phoneNumber);
         int confirmationNumber = generateConfirmationNumber();
        flight.setConfirmationNumber(confirmationNumber);
@@ -165,7 +241,7 @@ public class ReservationApp {
 
 
     // function to book hotel
-    public void bookHotel(int hotelId, String name, String location, String checkIn, String checkOut, int guests, double price, Boolean RSVP, String userName, String userPassword, int phoneNumber, int NIN, String address) {
+     public void bookHotel(int hotelId, String name, String location, String checkIn, String checkOut, int guests, double price, Boolean RSVP, String userName, String userPassword, int phoneNumber, int NIN, String address) {
        Hotel hotel = new Hotel(hotelId, name, location, checkIn, checkOut, guests, price, userName, userPassword, phoneNumber, NIN, address);
        int confirmationNumber = generateConfirmationNumber();
         hotel.setConfirmationNumber(confirmationNumber);
@@ -175,23 +251,31 @@ public class ReservationApp {
 
 
     // function to book bus
-    public void bookBus(int busNumberPlate, String origin, String destinaion, int seatNum, double price, Boolean RSVP, String color, String userName, String userPassword, int phoneNumber, int NIN, String address)  {
+     public void bookBus(int busNumberPlate, String origin, String destinaion, int seatNum, double price, Boolean RSVP, String color, String userName, String userPassword, int phoneNumber, int NIN, String address)  {
         Bus bus = new Bus(busNumberPlate, origin, destinaion, seatNum, price, RSVP, color, userName, userPassword, phoneNumber, NIN, address);
         int confirmationNumber = generateConfirmationNumber();
         bus.setConfirmationNumber(confirmationNumber);
         this.buses.add(bus);
         System.out.println("Bus booked! Confirmation number: " + confirmationNumber);
-    }
+     }
 
 
     // function to book train
     
     public void bookTrain(int trainId, String name, String seatNum, String origin, String destination, String color, double price, Boolean RSVP, String userName, String userPassword, int phoneNumber, int NIN, String address) {
         Train train = new Train(trainId, name, seatNum, origin, destination, color, price, RSVP, userName, userPassword, phoneNumber, NIN, address);
+
+
+        if (isBooked < 100  && generateConfirmationNumber() > 11 || isBooked > 160) {
+            System.out.println("Train is booked.");
         int confirmationNumber = generateConfirmationNumber();
         train.setConfirmationNumber(confirmationNumber);
         this.trains.add(train);
         System.out.println("Train booked! Confirmation number: " + confirmationNumber);
+
+        } else {
+            System.out.println("Train is not fully booked.");
+        }
     }
 
     // function to cancel reservation request
