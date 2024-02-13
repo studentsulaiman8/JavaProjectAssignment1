@@ -41,11 +41,56 @@ public class ReservationApp {
 
 
     // constructor for main class
+    public ReservationApp(String userName, String userPassword, int phoneNumber, int NIN, String address) {
+        this.userName = userName;
+        this.userPassword = userPassword;
+        this.phoneNumber = phoneNumber;
+        this.NIN = NIN;
+        this.address = address;
+    }
 
 
 
     // Getters and Setters
+    public String getUserName() {
+        return userName;
+    }
 
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
+
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public int getNIN() {
+        return NIN;
+    }
+
+    public void setNIN(int NIN) {
+        this.NIN = NIN;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     //to String methods
 
@@ -295,6 +340,17 @@ class Flight extends ReservationApp {
 
 
   // constructors for class flight
+    public Flight(String userName, String userPassword, int phoneNumber, int NIN, String address, int flightNumber, String flightPassengerName, String origin, String destination, String date, int numPassengers, double flightPrice, Boolean RSVP) {
+        super(userName, userPassword, phoneNumber, NIN, address);
+        this.flightNumber = flightNumber;
+        this.flightPassengerName = flightPassengerName;
+        this.origin = origin;
+        this.destination = destination;
+        this.date = date;
+        this.numPassengers = numPassengers;
+        this.flightPrice = flightPrice;
+        this.RSVP = RSVP;
+    }
 
     // empty constructors for flight
     public Flight(int flightNumber, String flightPassengerName, String origin, String destination, String date, int numPassengers, double price, Boolean rsvp, String userName, String userPassword, String address, int nin, int phoneNumber) {
@@ -302,7 +358,69 @@ class Flight extends ReservationApp {
 
 
     // Getters and Setters for class flight
+    public int getFlightNumber() {
+        return flightNumber;
+    }
 
+    public void setFlightNumber(int flightNumber) {
+        this.flightNumber = flightNumber;
+    }
+
+    public String getFlightPassengerName() {
+        return flightPassengerName;
+    }
+
+    public void setFlightPassengerName(String flightPassengerName) {
+        this.flightPassengerName = flightPassengerName;
+    }
+
+    public String getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(String origin) {
+        this.origin = origin;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public int getNumPassengers() {
+        return numPassengers;
+    }
+
+    public void setNumPassengers(int numPassengers) {
+        this.numPassengers = numPassengers;
+    }
+
+    public double getFlightPrice() {
+        return flightPrice;
+    }
+
+    public void setFlightPrice(double flightPrice) {
+        this.flightPrice = flightPrice;
+    }
+
+    public Boolean getRSVP() {
+        return RSVP;
+    }
+
+    public void setRSVP(Boolean RSVP) {
+        this.RSVP = RSVP;
+    }
 
     public int getConfirmationNumber() {
         return confirmationNumber;
@@ -327,6 +445,17 @@ class Hotel extends ReservationApp {
 
 
          // constructor for class hotel
+    public Hotel(String userName, String userPassword, int phoneNumber, int NIN, String address, int hotelId, String name, String location, String checkIn, String checkOut, int guests, double price, Boolean RSVP) {
+        super(userName, userPassword, phoneNumber, NIN, address);
+        this.hotelId = hotelId;
+        this.name = name;
+        this.location = location;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+        this.guests = guests;
+        this.price = price;
+        this.RSVP = RSVP;
+    }
 
 
     // Empty constructor
@@ -335,6 +464,69 @@ class Hotel extends ReservationApp {
 
     // Getters and Setters for class hotel
 
+    public int getHotelId() {
+        return hotelId;
+    }
+
+    public void setHotelId(int hotelId) {
+        this.hotelId = hotelId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getCheckIn() {
+        return checkIn;
+    }
+
+    public void setCheckIn(String checkIn) {
+        this.checkIn = checkIn;
+    }
+
+    public String getCheckOut() {
+        return checkOut;
+    }
+
+    public void setCheckOut(String checkOut) {
+        this.checkOut = checkOut;
+    }
+
+    public int getGuests() {
+        return guests;
+    }
+
+    public void setGuests(int guests) {
+        this.guests = guests;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public Boolean getRSVP() {
+        return RSVP;
+    }
+
+    public void setRSVP(Boolean RSVP) {
+        this.RSVP = RSVP;
+    }
 
     public int getConfirmationNumber() {
         return confirmationNumber;
@@ -359,7 +551,16 @@ class Bus extends ReservationApp {
 
 
   // constructor for class bus
-
+    public Bus(String userName, String userPassword, int phoneNumber, int NIN, String address, int busNumberPlate, String busColor, String origin, String destination, Boolean RSVP, int seatNum, double price) {
+        super(userName, userPassword, phoneNumber, NIN, address);
+        this.busNumberPlate = busNumberPlate;
+        this.busColor = busColor;
+        this.origin = origin;
+        this.destination = destination;
+        this.RSVP = RSVP;
+        this.seatNum = seatNum;
+        this.price = price;
+    }
 
     //Empty constructor of class bus
     public Bus(int busNumberPlate, String origin, String destinaion, int seatNum, double price, Boolean rsvp, String color, String userName, String userPassword, int phoneNumber, int nin, String address) {
@@ -368,7 +569,61 @@ class Bus extends ReservationApp {
 
 
      // setters and getters for class bus
+    public int getBusNumberPlate() {
+        return busNumberPlate;
+    }
 
+    public void setBusNumberPlate(int busNumberPlate) {
+        this.busNumberPlate = busNumberPlate;
+    }
+
+    public String getBusColor() {
+        return busColor;
+    }
+
+    public void setBusColor(String busColor) {
+        this.busColor = busColor;
+    }
+
+    public String getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(String origin) {
+        this.origin = origin;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public Boolean getRSVP() {
+        return RSVP;
+    }
+
+    public void setRSVP(Boolean RSVP) {
+        this.RSVP = RSVP;
+    }
+
+    public int getSeatNum() {
+        return seatNum;
+    }
+
+    public void setSeatNum(int seatNum) {
+        this.seatNum = seatNum;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
     public int getConfirmationNumber() {
         return confirmationNumber;
@@ -393,6 +648,18 @@ class Train extends ReservationApp {
     private int confirmationNumber;
 
 
+    //Constructor for train
+    public Train(String userName, String userPassword, int phoneNumber, int NIN, String address, int trainId, String name, String color, String seatNum, Boolean RSVP, String origin, String destination, double price) {
+        super(userName, userPassword, phoneNumber, NIN, address);
+        this.trainId = trainId;
+        this.name = name;
+        this.color = color;
+        this.seatNum = seatNum;
+        this.RSVP = RSVP;
+        this.origin = origin;
+        this.destination = destination;
+        this.price = price;
+    }
 
 
     // empty constructor
@@ -401,7 +668,69 @@ class Train extends ReservationApp {
 
 
     // Setters and Getters for class train
+    public int getTrainId() {
+        return trainId;
+    }
 
+    public void setTrainId(int trainId) {
+        this.trainId = trainId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getSeatNum() {
+        return seatNum;
+    }
+
+    public void setSeatNum(String seatNum) {
+        this.seatNum = seatNum;
+    }
+
+    public Boolean getRSVP() {
+        return RSVP;
+    }
+
+    public void setRSVP(Boolean RSVP) {
+        this.RSVP = RSVP;
+    }
+
+    public String getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(String origin) {
+        this.origin = origin;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
     public int getConfirmationNumber() {
         return confirmationNumber;
@@ -423,7 +752,7 @@ class Train extends ReservationApp {
 
         // Method to read a register at a given address
         public int readRegister(int address) {
-            if (address >= 0 || address < size) {
+            if (address >= 0 && address < size) {
                 return registers[address];
             } else {
                 System.out.println("Invalid register address");
